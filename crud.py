@@ -7,8 +7,7 @@ Contains all database operations for the User table.
 """
 
 from sqlalchemy.orm import Session
-
-from database_models import User
+from models_database import User
 
 
 def get_user_by_username(db: Session, username: str):
@@ -17,10 +16,7 @@ def get_user_by_username(db: Session, username: str):
     Otherwise returns None.
     """
     return (
-        db.query(User)
-        .filter(User.username == username)
-        .first()
-    )
+        db.query(User).filter(User.username == username).first())
 
 
 def get_user_by_email(db: Session, email: str):
@@ -29,10 +25,7 @@ def get_user_by_email(db: Session, email: str):
     Otherwise returns None.
     """
     return (
-        db.query(User)
-        .filter(User.email == email)
-        .first()
-    )
+        db.query(User).filter(User.email == email).first())
 
 
 def create_user(
