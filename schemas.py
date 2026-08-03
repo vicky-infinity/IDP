@@ -25,3 +25,8 @@ class UserSignup(BaseModel):
             raise ValueError("Password and Confirm Password do not match.")
 
         return self
+    
+# Login Schema
+class UserLogin(BaseModel):
+    username: str
+    password: str

@@ -13,11 +13,11 @@ Every database operation will use SessionLocal.
 """
 # configurtion of the folder structure and path is pending rn its just in root dir
 
-import os
-
-from dotenv import load_dotenv
 from sqlalchemy import create_engine
-from sqlalchemy.orm import declarative_base, sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, Session
+import os
+from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
@@ -40,3 +40,14 @@ SessionLocal = sessionmaker(
 
 # Base class for all models
 Base = declarative_base()
+
+from typing import Generator   # <-- add this import
+from sqlalchemy.orm import Session
+
+def get_db() -> Generator[Session, None, None]:
+    """Dependency that provides a SQLAlchemy session."""
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
