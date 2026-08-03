@@ -18,6 +18,6 @@ from auth import router
 app = FastAPI(
     title="Authentication API",
     version="1.0.0",
-    description="Signup and Login API"
+    description="IDP Backend API"
 )
 app.include_router(router)
