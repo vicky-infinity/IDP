@@ -22,13 +22,15 @@ from database_config import get_db
 # Schemas
 from schemas import UserSignup, UserLogin
 
+# Custome Decorater
+from decoraters import exc_time
 # CRUD
 from crud import (
     get_user_by_username,
     get_user_by_email,
     create_user,
 )
-
+import jwt
 import os
 from dotenv import load_dotenv
 
@@ -36,9 +38,11 @@ from dotenv import load_dotenv
 from password_manager import hash_password, verify_password
 
 load_dotenv()
-SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key-here")  # Use a strong secret in production
+SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key-here")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
+
+
 
 router = APIRouter(
     prefix="/auth",
@@ -117,6 +121,7 @@ def signup(user: UserSignup,db: Session = Depends(get_db),):
 
 
 @router.post("/login")
+@exc_time
 def login(user: UserLogin,db: Session = Depends(get_db),):
     """ Authenticate a user and return a JWT token.
     Flow:
@@ -150,8 +155,3 @@ def login(user: UserLogin,db: Session = Depends(get_db),):
         "user_id": db_user.id,
         "username": db_user.username,
         }
-        
-
-
-
-    
