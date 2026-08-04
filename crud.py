@@ -15,8 +15,7 @@ def get_user_by_username(db: Session, username: str):
     Returns the user if the username exists.
     Otherwise returns None.
     """
-    return (
-        db.query(User).filter(User.username == username).first())
+    return (db.query(User).filter(User.username == username).first())
 
 
 def get_user_by_email(db: Session, email: str):
@@ -24,17 +23,10 @@ def get_user_by_email(db: Session, email: str):
     Returns the user if the email exists.
     Otherwise returns None.
     """
-    return (
-        db.query(User).filter(User.email == email).first())
+    return (db.query(User).filter(User.email == email).first())
 
 
-def create_user(
-    db: Session,
-    name: str,
-    username: str,
-    email: str,
-    password_hash: str,
-):
+def create_user(db: Session,name: str,username: str,email: str,password_hash: str,):
     """
     Creates a new user in the database.
     """
