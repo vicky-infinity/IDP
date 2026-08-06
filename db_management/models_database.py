@@ -12,7 +12,7 @@ from datetime import datetime, timezone
 
 from sqlalchemy import Column, DateTime, Integer, String
 
-from database_config import Base
+from db_management.database_config import Base
 
 
 class User(Base):

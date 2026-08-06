@@ -17,15 +17,15 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from datetime import datetime, timedelta, timezone
 # Database
-from database_config import get_db
+from db_management.database_config import get_db
 
 # Schemas
-from schemas import UserSignup, UserLogin
+from schemas.schemas import UserSignup, UserLogin
 
 # Custome Decorater
 from decoraters import exc_time
 # CRUD
-from crud import (
+from db_management.crud import (
     get_user_by_username,
     get_user_by_email,
     create_user,

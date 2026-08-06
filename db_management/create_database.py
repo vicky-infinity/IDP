@@ -11,8 +11,8 @@ It will:
 """
 # configurtion of the folder structure and path is pending rn its just in root dir
 
-from database_config import Base, engine
-from models_database import User
+from db_management.database_config import Base, engine
+from db_management.models_database import User
 
 # Create all tables
 Base.metadata.create_all(bind=engine)

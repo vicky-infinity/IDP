@@ -7,7 +7,7 @@ Contains all database operations for the User table.
 """
 
 from sqlalchemy.orm import Session
-from models_database import User
+from db_management.models_database import User
 
 
 def get_user_by_username(db: Session, username: str):

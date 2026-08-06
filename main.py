@@ -13,7 +13,7 @@ This file:
 from fastapi import FastAPI
 
 from auth import router
-
+from file_processes.process_files import fprouter
 
 app = FastAPI(
     title="Authentication API",
@@ -21,3 +21,4 @@ app = FastAPI(
     description="IDP Backend API"
 )
 app.include_router(router)
+app.include_router(fprouter)
